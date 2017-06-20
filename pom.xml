@@ -35,7 +35,7 @@
         <dependency>
             <groupId>org.eclipse.persistence</groupId>
             <artifactId>org.eclipse.persistence.jpa</artifactId>
-            <version>${version.eclipselink}</version>
+            <version>3.5.1</version>
         </dependency>
         <!--<dependency>-->
             <!--<groupId>org.eclipse.persistence</groupId>-->
@@ -57,7 +57,7 @@
         <dependency>
             <groupId>org.glassfish</groupId>
             <artifactId>javax.el</artifactId>
-            <version>${version.el}</version>
+            <version>3.0.1-b08</version>
         </dependency>
 
         <!--<dependency>-->
@@ -68,7 +68,7 @@
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
-            <version>${version.postgres}</version>
+            <version>42.1.1.jre7</version>
         </dependency>
 
         <dependency>

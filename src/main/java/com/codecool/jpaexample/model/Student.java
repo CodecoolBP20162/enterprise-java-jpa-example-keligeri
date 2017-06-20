@@ -11,33 +11,65 @@ public class Student {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "student_id")
     private long id;
 
+    @Column(name = "student_name")
     private String name;
 
+    @ManyToOne
+    private Klass klass;
+
+    @Column(unique = true, nullable = false)
     private String email;
 
     @Temporal(TemporalType.DATE)
     private Date dateOfBirth;
 
+    @Transient
     private long age;
 
     @OneToOne
     private Address address;
 
-    public Student() {
+    @ElementCollection
+    @CollectionTable(name = "Phone",
+            joinColumns = @JoinColumn(name = "student_id"))
+    @Column(name = "phone_number")
+    private List<String> phoneNumbers;
+
+    public List<String> getPhoneNumbers() {
+        return phoneNumbers;
     }
 
-    public Student(String name, String email, Date dateOfBirth) {
+    public void setPhoneNumbers(List<String> phoneNumbers) {
+        this.phoneNumbers = phoneNumbers;
+    }
+
+    public Klass getKlass() {
+        return klass;
+    }
+
+    public void setKlass(Klass klass) {
+        this.klass = klass;
+    }
+
+    public Student() {}
+
+    public Student(String name, String email, Date dateOfBirth,
+                   List<String> phoneNumbers, Klass klass) {
         this.name = name;
         this.email = email;
         this.dateOfBirth = dateOfBirth;
         this.age = (Calendar.getInstance().getTimeInMillis() - dateOfBirth.getTime())
                 / (60L * 60L * 1000L * 24L * 365L);
+        this.phoneNumbers = phoneNumbers;
+        this.klass = klass;
     }
 
-    public Student(String name, String email, Date dateOfBirth, Address address) {
-        this(name, email, dateOfBirth);
+    public Student(String name, String email, Date dateOfBirth,
+                   Address address, List<String> phoneNumbers, Klass klass) {
+        this(name, email, dateOfBirth, phoneNumbers, klass);
         this.address = address;
     }
 
